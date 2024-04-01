@@ -1,8 +1,9 @@
 <?php
-class Latihan1 extends CI_Controller
+class contoh1 extends CI_Controller
 {
-    public function index() 
+    public function index()
     {
-        $this->load->view('Dewi');
+        echo "<h1> Perkenalkan </h1>";
+        echo "Nama Saya Dewi Yulianingsih";
     }
 }

@@ -4,59 +4,48 @@ body{
     font-family: sans-serif;
     font-size:15px;
    }
-
-#wrapper{
+   #wrapper{
     background: #fff;
     width: 1100px;
     margin: 20px auto;
    }
-
-#wrapper header{
+   #wrapper header{
     background: #232323;
     padding: 20px;
    }
-
-#wrapper header hgroup{
+   #wrapper header hgroup{
     float: left;
     color: #fff;
    }
-
-#wrapper header nav{
+   #wrapper header nav{
     float: right;
-    margin-top: 50px;
-    }
-
+ margin-top: 50px;
+}
 #wrapper header nav ul{
-    padding: 0;
-    margin: 0;
-   }
-
+ padding: 0;
+ margin: 0;
+}
 #wrapper header nav ul li{
-    float: left;
-    list-style: none;
-   }
-
+ float: left;
+ list-style: none;
+}
 #wrapper header nav ul li a{
-    padding: 15px;
-    color: #fff;
-    text-decoration: none;
-   }
-
+ padding: 15px;
+ color: #fff;
+ text-decoration: none;
+}
 .clear{
-    clear: both;
-   }
-
+ clear: both;
+}
 footer{
-    background: #232323;
-    padding: 20px;
-   }
-
+ background: #232323;
+ padding: 20px;
+}
 footer a{
-    color: #fff;
-    text-decoration: none;
-   }
-
-   section{
-    padding: 20px;
+ color: #fff;
+ text-decoration: none;
+}
+section{
+ padding: 20px;
 }
    

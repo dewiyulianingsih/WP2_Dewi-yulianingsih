@@ -3,9 +3,15 @@ class Autentifikasi extends CI_Controller
 {
     public function index()
     {
-        // Jika statusnya sudah login, maka tidak bisa mengakses halaman login alias dikembalikan ke tampilan user
-        if ($this->session->userdata('email')) {
+        // echo password_hash("123", PASSWORD_DEFAULT);die;
+        // session_destroy();die;
+
+        // Jika statusnya sudah login, maka tidak bisa mengakses halaman login 
+        // alias dikembalikan ke tampilan user
+        if ($this->session->userdata('role_id')==2) {
             redirect('user');
+        } elseif ($this->session->userdata('role_id')==1) {
+            redirect('admin');
         }
 
         $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email', [
@@ -46,6 +52,7 @@ class Autentifikasi extends CI_Controller
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
+
                     if ($user['role_id'] == 1) {
                         redirect('admin');
                     } else {
@@ -69,14 +76,15 @@ class Autentifikasi extends CI_Controller
     }
 
     public function blok()
-{
-    $this->load->view('autentifikasi/blok');
-}
+    {
+        $this->load->view('autentifikasi/blok');
+    }
+    
+    public function gagal()
+    {
+        $this->load->view('autentifikasi/gagal');
+    }
 
-public function gagal()
-{
-    $this->load->view('autentifikasi/gagal');
-}
 public function registrasi()
 {
     // Jika pengguna sudah login, arahkan ke halaman user
@@ -125,4 +133,37 @@ public function registrasi()
         redirect('autentifikasi');
     }
 }
+function logout() {
+    session_destroy();
+    redirect('autentifikasi');
 }
+public function fetchData()
+    {
+        $url = "https://api.npoint.io/99c279bb173a6e28359c/data";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        if ($response) {
+            
+            $data['surahs'] = json_decode($response, true);
+            $this->load->view('surah_view', $data);
+            // $data = json_decode($response, true);
+            // $this->output
+            //      ->set_content_type('application/json')
+            //      ->set_output(json_encode($data));
+        } else {
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(['error' => 'Unable to fetch data']));
+        }
+    }
+
+
+}
+?>
